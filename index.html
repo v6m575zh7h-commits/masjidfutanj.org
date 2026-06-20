@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G098V69MTE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-G098V69MTE');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Masjid Futa Islamic Center of New Jersey | masjidfutanj.org</title>
@@ -143,6 +151,14 @@
 
   .nav-links a:hover { color: var(--gold); }
   .nav-links a:hover::after { transform: scaleX(1); }
+
+  /* Mobile dropdown menu has a dark green background — links need to be light here */
+  .nav-links.mobile-open a {
+    color: #ffffff;
+  }
+  .nav-links.mobile-open a:hover {
+    color: var(--gold-light);
+  }
 
   .nav-donate {
     background: var(--gold);
@@ -1094,6 +1110,15 @@
     .footer-top { grid-template-columns: 1fr 1fr; gap: 36px; }
   }
 
+  /* Medium screens: nav-brand text + 6 links + donate button get too tight.
+     Switch to hamburger earlier and hide the long brand text, keeping just the logo. */
+  @media (max-width: 1080px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .nav-brand-text { display: none; }
+  }
+
   @media (max-width: 768px) {
     nav { padding: 0 24px; }
     .nav-links { display: none; }
@@ -1126,6 +1151,8 @@
 </style>
 </head>
 <body>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0"></script>
 
 <!-- ── NAV ── -->
 <nav>
@@ -1137,6 +1164,7 @@
     </div>
   </a>
   <ul class="nav-links">
+    <li><a href="#prayer-times" style="color:var(--gold); font-weight:700;">🕌 Prayer Times</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#services">Programs</a></li>
     <li><a href="#events">Events</a></li>
@@ -1170,7 +1198,7 @@
 </section>
 
 <!-- ── PRAYER TIMES ── -->
-<div class="prayer-widget-section">
+<div class="prayer-widget-section" id="prayer-times">
   <div class="prayer-widget-header">
     <span class="prayer-widget-label">🕌 Daily Prayer & Iqamah Times</span>
     <span class="prayer-widget-sub">Live times updated automatically via Masjidal</span>
@@ -1291,13 +1319,13 @@ loadPrayerTimes();
         <span class="section-divider"></span>
       </div>
       <p class="about-body">
-        Haali-Pular New Jersey (<strong>HPNJ</strong>), publicly operating as the <strong>Fouta Islamic Center of New Jersey (FICNJ)</strong>, is a 501(c)(3) nonprofit organized exclusively for charitable, religious, educational, and cultural purposes. We promote the unity, Islamic values, and cultural heritage of the Fulani (Pular) community in New Jersey and surrounding areas.
+        Haali-Pular New Jersey (<strong>HPNJ</strong>), publicly operating as the <strong>Fouta Islamic Center of New Jersey (FICNJ)</strong>, is a 501(c)(3) nonprofit organized exclusively for charitable, religious, and educational purposes. We exist to nurture faith, strengthen community, and serve our neighbors with compassion and sincerity.
       </p>
       <p class="about-body">
-        The Fulani (Fulbe) people are present in more than twenty countries across West and Central Africa. Our organization draws on this rich heritage to create a sense of belonging and identity for Fulani descendants living in New Jersey and throughout the United States. Membership is open to <em>all</em> individuals who support our mission, regardless of background or ethnicity.
+        Our doors are open to every Muslim and every neighbor who walks through them. We welcome all backgrounds, all walks of life, and all who seek a place of prayer, learning, and belonging. Membership and participation are open to <em>everyone</em> who supports our mission — regardless of background or origin.
       </p>
       <p class="about-body">
-        Our flagship project is the construction of a permanent mosque at <strong>475 Springfield Avenue, Newark, NJ 07103</strong> — a spiritual and cultural hub for Fulani families and friends, and a beacon of Islamic values for all of New Jersey.
+        Our flagship project is the construction of a permanent mosque at <strong>475 Springfield Avenue, Newark, NJ 07103</strong> — a spiritual home for worship, education, and brotherhood, and a beacon of Islamic values for all of New Jersey.
       </p>
       <div class="about-pillars">
         <div class="pillar">
@@ -1306,9 +1334,9 @@ loadPrayerTimes();
           <div class="p-text">Daily worship, Qur'anic education, and spiritual growth rooted in Islamic values.</div>
         </div>
         <div class="pillar">
-          <div class="p-icon">🌍</div>
-          <div class="p-title">Heritage</div>
-          <div class="p-text">Celebrating and preserving Fulani (Pular) culture, language, and identity.</div>
+          <div class="p-icon">🤝</div>
+          <div class="p-title">Community</div>
+          <div class="p-text">A welcoming home for every Muslim and neighbor, united in faith and belonging.</div>
         </div>
         <div class="pillar">
           <div class="p-icon">🤝</div>
@@ -1340,9 +1368,9 @@ loadPrayerTimes();
         <p style="font-size:14px; color:var(--text-mid); line-height:1.7;">Our flagship project — building a permanent mosque at 475 Springfield Ave, Newark, NJ — a spiritual and cultural hub for Fulani families and friends across New Jersey.</p>
       </div>
       <div style="background:#ffffff; border-left:4px solid var(--green); border-radius:4px; padding:28px 32px; box-shadow:0 2px 16px rgba(26,77,58,0.07);">
-        <div style="font-size:28px; margin-bottom:12px;">🌍</div>
-        <h4 style="font-family:'Playfair Display',serif; font-size:18px; color:var(--green); margin-bottom:10px;">Cultural Preservation</h4>
-        <p style="font-size:14px; color:var(--text-mid); line-height:1.7;">Organizing cultural events, civic engagement, and networking that celebrate Pulaar heritage and foster full participation of the Fulani community in all spheres of society.</p>
+        <div style="font-size:28px; margin-bottom:12px;">🤲</div>
+        <h4 style="font-family:'Playfair Display',serif; font-size:18px; color:var(--green); margin-bottom:10px;">Community Outreach</h4>
+        <p style="font-size:14px; color:var(--text-mid); line-height:1.7;">Organizing community events, civic engagement, and outreach programs that welcome neighbors of all backgrounds and foster full participation in our shared community life.</p>
       </div>
       <div style="background:#ffffff; border-left:4px solid var(--gold); border-radius:4px; padding:28px 32px; box-shadow:0 2px 16px rgba(26,77,58,0.07);">
         <div style="font-size:28px; margin-bottom:12px;">💪</div>
@@ -1417,7 +1445,7 @@ loadPrayerTimes();
         <div style="padding:14px 24px; font-size:12px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold-light);">🕐 Time</div>
       </div>
       <div style="display:grid; grid-template-columns:1fr 1fr 1fr; border-bottom:1px solid rgba(255,255,255,0.06);">
-        <div style="padding:18px 24px; color:var(--white); font-size:15px; border-right:1px solid rgba(201,149,42,0.15); display:flex; align-items:center; gap:10px;"><span>✏️</span> Quran & Homework Help</div>
+        <div style="padding:18px 24px; color:var(--white); font-size:15px; border-right:1px solid rgba(201,149,42,0.15); display:flex; align-items:center; gap:10px;"><span>✏️</span> Quran Class</div>
         <div style="padding:18px 24px; color:rgba(255,255,255,0.8); font-size:14px; border-right:1px solid rgba(201,149,42,0.15);">Tue – Thu</div>
         <div style="padding:18px 24px; color:rgba(255,255,255,0.8); font-size:14px;">5:00 PM – 7:00 PM</div>
       </div>
@@ -1445,6 +1473,43 @@ loadPrayerTimes();
         <div style="font-size:12px; color:rgba(255,255,255,0.6); font-style:italic; margin-top:4px;">"My Lord, increase me in knowledge." (Qur'an 20:114)</div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ── KHUTBAH LIVE ── -->
+<section id="khutbah" style="padding:100px 48px; background:#f0f7f3;">
+  <div class="section-header reveal">
+    <span class="section-tag">Jumu'ah Khutbah</span>
+    <h2 class="section-title">Watch the Khutbah Live</h2>
+    <span class="section-divider"></span>
+    <p class="section-lead">Join us in person, or follow along live from anywhere through our Facebook page. Recent khutbahs are also available to watch anytime.</p>
+  </div>
+
+  <div style="max-width:760px; margin:0 auto;" class="reveal">
+    <div style="text-align:center; margin-bottom:28px;">
+      <a href="https://www.facebook.com/profile.php?id=61585127536469&sk=live_videos" target="_blank" style="display:inline-flex; align-items:center; gap:10px; background:#c0392b; color:#fff; padding:16px 38px; font-family:'Lato',sans-serif; font-size:13px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; text-decoration:none; border-radius:2px; transition:background 0.2s;" onmouseover="this.style.background='#e74c3c'" onmouseout="this.style.background='#c0392b'">
+        🔴 Watch Live on Facebook
+      </a>
+    </div>
+
+    <div style="background:#ffffff; border:1px solid rgba(26,77,58,0.12); border-radius:6px; padding:16px; box-shadow:0 4px 24px rgba(26,77,58,0.07);">
+      <div class="fb-page"
+        data-href="https://www.facebook.com/profile.php?id=61585127536469"
+        data-tabs="timeline"
+        data-width="500"
+        data-height="600"
+        data-small-header="true"
+        data-adapt-container-width="true"
+        data-hide-cover="false"
+        data-show-facepile="false">
+        <blockquote cite="https://www.facebook.com/profile.php?id=61585127536469" class="fb-xfbml-parse-ignore">
+          <a href="https://www.facebook.com/profile.php?id=61585127536469" target="_blank">Masjid Futa Islamic Center of NJ on Facebook</a>
+        </blockquote>
+      </div>
+    </div>
+    <p style="text-align:center; font-size:12px; color:var(--text-light); margin-top:16px; font-style:italic;">
+      Live during khutbah, otherwise showing our most recent posts and videos.
+    </p>
   </div>
 </section>
 
@@ -1556,6 +1621,21 @@ loadPrayerTimes();
       <p class="value-text">Service to our neighbors and society as an expression of our deen. We care for the vulnerable and give back to New Jersey.</p>
     </div>
   </div>
+
+  <!-- HPNJ Community Org Callout -->
+  <div class="reveal" style="max-width:760px; margin:56px auto 0; background:#ffffff; border:1px solid rgba(26,77,58,0.15); border-radius:6px; padding:36px 40px; display:flex; align-items:center; gap:28px; flex-wrap:wrap; box-shadow:0 4px 24px rgba(26,77,58,0.06);">
+    <div style="width:64px; height:64px; border-radius:50%; background:var(--green); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+      <span style="font-size:28px;">🕊️</span>
+    </div>
+    <div style="flex:1; min-width:240px; text-align:left;">
+      <div style="font-size:11px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:6px;">Our Parent Organization</div>
+      <h4 style="font-family:'Playfair Display',serif; font-size:19px; color:var(--green); margin-bottom:6px;">Haali-Pular New Jersey (HPNJ)</h4>
+      <p style="font-size:14px; color:var(--text-mid); line-height:1.6;">Visit our community's parent nonprofit website for more on our broader mission, programs, and ways to get involved.</p>
+    </div>
+    <a href="https://www.hpnj.org/" target="_blank" style="background:var(--green); color:#fff; padding:13px 30px; font-family:'Lato',sans-serif; font-size:13px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none; border-radius:2px; flex-shrink:0; transition:background 0.2s;" onmouseover="this.style.background='var(--green-mid)'" onmouseout="this.style.background='var(--green)'">
+      Visit HPNJ.org →
+    </a>
+  </div>
 </section>
 
 <!-- ── DONATE ── -->
@@ -1602,6 +1682,20 @@ loadPrayerTimes();
         </a>
       </div>
 
+    </div>
+
+    <!-- Zelle Option -->
+    <div class="reveal" style="margin-top:24px; max-width:900px; margin-left:auto; margin-right:auto; background:rgba(255,255,255,0.06); border:1px solid rgba(109,30,212,0.4); border-radius:4px; padding:28px 32px; display:flex; align-items:center; gap:24px; flex-wrap:wrap;">
+      <div style="width:52px; height:52px; flex-shrink:0; background:#6D1ED4; border-radius:10px; display:flex; align-items:center; justify-content:center;">
+        <span style="font-family:'Lato',sans-serif; font-weight:700; font-size:26px; color:#ffffff; line-height:1;">Z</span>
+      </div>
+      <div style="flex:1; min-width:200px; text-align:left;">
+        <div style="font-size:11px; font-weight:700; letter-spacing:0.25em; text-transform:uppercase; color:#b07ae8; margin-bottom:10px;">Zelle</div>
+        <p style="font-size:14px; color:rgba(255,255,255,0.75); line-height:1.6;">Prefer to give via Zelle? Send your donation directly — no fees, no middleman.</p>
+      </div>
+      <a href="tel:9738190392" style="background:transparent; border:2px solid #6D1ED4; color:#b07ae8; padding:14px 28px; font-family:'Amiri',serif; font-size:18px; font-weight:700; text-decoration:none; border-radius:2px; white-space:nowrap; transition:background 0.2s;" onmouseover="this.style.background='rgba(109,30,212,0.2)'" onmouseout="this.style.background='transparent'">
+        (973) 819-0392
+      </a>
     </div>
   </div>
 </section>
@@ -1669,20 +1763,20 @@ loadPrayerTimes();
       <div class="form-row">
         <div class="form-group">
           <label>First Name</label>
-          <input type="text" placeholder="Ahmed">
+          <input type="text" id="cf-fname" placeholder="Ahmed">
         </div>
         <div class="form-group">
           <label>Last Name</label>
-          <input type="text" placeholder="Diallo">
+          <input type="text" id="cf-lname" placeholder="Diallo">
         </div>
       </div>
       <div class="form-group">
         <label>Email Address</label>
-        <input type="email" placeholder="you@email.com">
+        <input type="email" id="cf-email" placeholder="you@email.com">
       </div>
       <div class="form-group">
         <label>Subject</label>
-        <select>
+        <select id="cf-subject">
           <option>General Inquiry</option>
           <option>Prayer Times</option>
           <option>Quran Classes</option>
@@ -1694,12 +1788,40 @@ loadPrayerTimes();
       </div>
       <div class="form-group">
         <label>Message</label>
-        <textarea placeholder="Assalamu Alaikum, I would like to..."></textarea>
+        <textarea id="cf-message" placeholder="Assalamu Alaikum, I would like to..."></textarea>
       </div>
-      <button class="form-submit" onclick="alert('JazakAllahu Khairan! We will respond soon, Insha\'Allah.')">
+      <button class="form-submit" onclick="sendContactForm()">
         Send Message — إن شاء الله
       </button>
+      <p id="cf-status" style="font-size:13px; color:var(--text-light); margin-top:12px; text-align:center;"></p>
     </div>
+
+    <script>
+      function sendContactForm() {
+        const fname = document.getElementById('cf-fname').value.trim();
+        const lname = document.getElementById('cf-lname').value.trim();
+        const email = document.getElementById('cf-email').value.trim();
+        const subject = document.getElementById('cf-subject').value;
+        const message = document.getElementById('cf-message').value.trim();
+        const status = document.getElementById('cf-status');
+
+        if (!fname || !email || !message) {
+          status.style.color = '#c0392b';
+          status.textContent = 'Please fill in your name, email, and message before sending.';
+          return;
+        }
+
+        const toAddress = 'futaislamiccenterofnj@gmail.com';
+        const mailSubject = encodeURIComponent(`[Website Inquiry] ${subject} — ${fname} ${lname}`);
+        const mailBody = encodeURIComponent(
+          `Name: ${fname} ${lname}\nEmail: ${email}\nSubject: ${subject}\n\nMessage:\n${message}`
+        );
+        window.location.href = `mailto:${toAddress}?subject=${mailSubject}&body=${mailBody}`;
+
+        status.style.color = 'var(--green)';
+        status.textContent = 'Opening your email app to send this message — JazakAllahu Khairan!';
+      }
+    </script>
   </div>
 </section>
 
@@ -1714,8 +1836,10 @@ loadPrayerTimes();
     <div class="footer-col">
       <h4>Quick Links</h4>
       <ul>
+        <li><a href="#prayer-times">Prayer Times</a></li>
         <li><a href="#about">About Us</a></li>
         <li><a href="#services">Programs</a></li>
+        <li><a href="#khutbah">Khutbah Live</a></li>
         <li><a href="#events">Events</a></li>
         <li><a href="#donate">Donate</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -1724,26 +1848,25 @@ loadPrayerTimes();
     <div class="footer-col">
       <h4>Programs</h4>
       <ul>
-        <li><a href="#">Daily Prayers</a></li>
-        <li><a href="#">Qur'an Classes</a></li>
-        <li><a href="#">Youth Programs</a></li>
-        <li><a href="#">Sisters' Circle</a></li>
-        <li><a href="#">Social Services</a></li>
+        <li><a href="#prayer-times">Daily Prayers</a></li>
+        <li><a href="#services">Qur'an Classes</a></li>
+        <li><a href="#services">Youth Programs</a></li>
+        <li><a href="#khutbah">Khutbah Live</a></li>
+        <li><a href="#donate">Zakat & Donations</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Connect</h4>
       <ul>
-        <li><a href="#">Facebook</a></li>
-        <li><a href="#">Instagram</a></li>
-        <li><a href="#">YouTube</a></li>
-        <li><a href="#">WhatsApp Group</a></li>
-        <li><a href="#">Newsletter</a></li>
+        <li><a href="https://www.facebook.com/profile.php?id=61585127536469" target="_blank">Facebook</a></li>
+        <li><a href="https://www.instagram.com/masjidfutanj?utm_source=qr" target="_blank">Instagram</a></li>
+        <li><a href="https://www.tiktok.com/@masjidfutanj?_r=1&_t=ZP-97LsKTs4fFv" target="_blank">TikTok</a></li>
+        <li><a href="https://x.com/masjidfutanj?s=11" target="_blank">X (Twitter)</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2025 Futa Islamic Center of New Jersey. All rights reserved.</span>
+    <span>© 2026 Masjid Futa Islamic Center of New Jersey. All rights reserved.</span>
     <span class="arabic-phrase">اللهم بارك في مجتمعنا</span>
     <span>masjidfutanj.org · Designed with ❤️ for the Ummah</span>
   </div>
@@ -1771,23 +1894,31 @@ loadPrayerTimes();
   // Mobile menu
   function toggleMenu(btn) {
     const links = document.querySelector('.nav-links');
-    links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
-    links.style.flexDirection = 'column';
-    links.style.position = 'absolute';
-    links.style.top = '72px';
-    links.style.left = '0';
-    links.style.right = '0';
-    links.style.background = 'rgba(26,77,58,0.98)';
-    links.style.padding = '24px 32px';
-    links.style.gap = '20px';
-    links.style.zIndex = '99';
+    const isOpen = links.classList.contains('mobile-open');
+    if (isOpen) {
+      links.classList.remove('mobile-open');
+      links.removeAttribute('style');
+    } else {
+      links.classList.add('mobile-open');
+      links.style.display = 'flex';
+      links.style.flexDirection = 'column';
+      links.style.alignItems = 'flex-start';
+      links.style.position = 'fixed';
+      links.style.top = '100px';
+      links.style.left = '0';
+      links.style.right = '0';
+      links.style.background = 'rgba(26,77,58,0.98)';
+      links.style.padding = '24px 32px';
+      links.style.gap = '20px';
+      links.style.zIndex = '99';
+    }
   }
 
   // Smooth nav close on link click (mobile)
   document.querySelectorAll('.nav-links a').forEach(a => {
     a.addEventListener('click', () => {
       const links = document.querySelector('.nav-links');
-      if (window.innerWidth <= 768) links.style.display = 'none';
+      if (window.innerWidth <= 1080) links.style.display = 'none';
     });
   });
 </script>
