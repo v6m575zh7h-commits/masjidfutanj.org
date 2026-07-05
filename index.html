@@ -23,11 +23,16 @@
   <meta property="og:title" content="Masjid Futa Islamic Center of New Jersey">
   <meta property="og:description" content="A welcoming mosque and community center serving the Muslim community in Newark, NJ. Daily prayers, Qur'an classes, youth programs, and more. 475 Springfield Ave, Newark NJ 07103.">
   <meta property="og:site_name" content="Masjid Futa Islamic Center of New Jersey">
+  <meta property="og:image" content="https://www.masjidfutanj.org/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Masjid Futa Islamic Center of New Jersey">
 
   <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Masjid Futa Islamic Center of New Jersey">
   <meta name="twitter:description" content="A welcoming mosque and community center serving the Muslim community in Newark, NJ. Daily prayers, Qur'an classes, youth programs, and more.">
+  <meta name="twitter:image" content="https://www.masjidfutanj.org/og-image.jpg">
 
   <!-- Canonical URL -->
   <link rel="canonical" href="https://www.masjidfutanj.org/">
@@ -1418,6 +1423,84 @@ loadPrayerTimes();
     <span class="section-divider"></span>
     <p class="section-lead">Weekly classes for adults, kids, and teens — building knowledge, faith, and community together.</p>
   </div>
+
+  <!-- ════════════════════════════════════════════════════════════
+       📢 LIVE ANNOUNCEMENTS — powered by Masjidal
+       To update: Log into portal.masjidal.com → Announcements
+       → edit your CLASS STATUS announcement → Save.
+       The website updates automatically within seconds. No GitHub needed.
+       ════════════════════════════════════════════════════════════ -->
+  <div class="reveal" style="max-width:900px; margin:0 auto 40px;">
+    <div id="announcements-container"></div>
+  </div>
+
+  <script>
+  async function loadAnnouncements() {
+    const masjidId = 'xdNXVwLV';
+    const container = document.getElementById('announcements-container');
+    try {
+      const res = await fetch(`https://timing.athanplus.com/masjid/announcements?masjid_id=${masjidId}`);
+      const data = await res.json();
+
+      // Support both array and object responses
+      const items = Array.isArray(data) ? data : (data.announcements || data.data || []);
+
+      if (!items || items.length === 0) {
+        // No announcements — show default green "all clear" banner
+        container.innerHTML = `
+          <div style="background:rgba(255,255,255,0.08); border-left:4px solid #4caf50; border-radius:4px; padding:16px 24px; display:flex; align-items:center; gap:14px;">
+            <span style="font-size:20px; flex-shrink:0;">✅</span>
+            <div style="font-size:14px; color:rgba(255,255,255,0.9); line-height:1.5;">
+              All classes are running as scheduled.
+            </div>
+          </div>`;
+        return;
+      }
+
+      // Render each announcement as a banner
+      let html = '';
+      items.forEach(item => {
+        const title = item.title || item.name || '';
+        const message = item.message || item.content || item.description || '';
+        const type = (item.type || '').toLowerCase();
+
+        // Pick color and icon based on type or title keywords
+        let borderColor = '#4caf50';
+        let icon = '📢';
+        const combined = (title + message).toLowerCase();
+        if (combined.includes('cancel') || combined.includes('closed') || type === 'urgent') {
+          borderColor = '#c0392b'; icon = '⚠️';
+        } else if (combined.includes('eid') || combined.includes('ramadan') || combined.includes('holiday')) {
+          borderColor = '#c9952a'; icon = '🌙';
+        } else if (combined.includes('change') || combined.includes('update') || combined.includes('moved')) {
+          borderColor = '#2980b9'; icon = '📅';
+        }
+
+        html += `
+          <div style="background:rgba(255,255,255,0.08); border-left:4px solid ${borderColor}; border-radius:4px; padding:16px 24px; display:flex; align-items:flex-start; gap:14px; margin-bottom:12px;">
+            <span style="font-size:20px; flex-shrink:0; margin-top:2px;">${icon}</span>
+            <div>
+              ${title ? `<div style="font-size:13px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.55); margin-bottom:4px;">${title}</div>` : ''}
+              <div style="font-size:14px; color:rgba(255,255,255,0.9); line-height:1.6;">${message}</div>
+            </div>
+          </div>`;
+      });
+      container.innerHTML = html;
+
+    } catch(e) {
+      // API failed — show neutral fallback banner
+      container.innerHTML = `
+        <div style="background:rgba(255,255,255,0.08); border-left:4px solid #4caf50; border-radius:4px; padding:16px 24px; display:flex; align-items:center; gap:14px;">
+          <span style="font-size:20px; flex-shrink:0;">✅</span>
+          <div style="font-size:14px; color:rgba(255,255,255,0.9); line-height:1.5;">
+            All classes are running as scheduled. For updates, contact us at (973) 819-0392.
+          </div>
+        </div>`;
+    }
+  }
+  loadAnnouncements();
+  </script>
+
   <!-- Quranic verse banner -->
   <div style="text-align:center; margin-bottom:48px;" class="reveal">
     <div style="display:inline-block; background:rgba(255,255,255,0.07); border:1px solid rgba(201,149,42,0.3); border-radius:4px; padding:24px 48px; max-width:700px;">
@@ -1475,8 +1558,8 @@ loadPrayerTimes();
       </div>
       <div style="display:grid; grid-template-columns:1fr 1fr 1fr; border-bottom:1px solid rgba(255,255,255,0.06);">
         <div style="padding:18px 24px; color:var(--white); font-size:15px; border-right:1px solid rgba(201,149,42,0.15); display:flex; align-items:center; gap:10px;"><span>✏️</span> Quran Class</div>
-        <div style="padding:18px 24px; color:rgba(255,255,255,0.8); font-size:14px; border-right:1px solid rgba(201,149,42,0.15);">Tue – Thu</div>
-        <div style="padding:18px 24px; color:rgba(255,255,255,0.8); font-size:14px;">5:00 PM – 7:00 PM</div>
+        <div style="padding:18px 24px; color:rgba(255,255,255,0.8); font-size:14px; border-right:1px solid rgba(201,149,42,0.15);">Mon – Thu</div>
+        <div style="padding:18px 24px; color:rgba(255,255,255,0.8); font-size:14px;">6:00 AM – 2:00 PM</div>
       </div>
       <div style="display:grid; grid-template-columns:1fr 1fr 1fr; background:rgba(255,255,255,0.03);">
         <div style="padding:18px 24px; color:var(--white); font-size:15px; border-right:1px solid rgba(201,149,42,0.15); display:flex; align-items:flex-start; gap:10px;"><span>📖</span><span>Quran Reading Nooraniya<br>Arabic<br>Islamic Studies</span></div>
@@ -1587,57 +1670,60 @@ loadPrayerTimes();
     <div class="event-card reveal">
       <div class="event-top">
         <div class="event-date-box" style="background:var(--green-mid);">
-          <div class="month">TBD</div>
-          <div class="day" style="font-size:20px;">—</div>
+          <div class="month">JUL</div>
+          <div class="day">12</div>
         </div>
         <div class="event-meta">
-          <div class="type">Community</div>
-          <div class="title">Upcoming Event</div>
+          <div class="type">Guest Lecture</div>
+          <div class="title">Prof. Dr. Asim Al-Khalili Al-Qaryouti</div>
         </div>
       </div>
       <div class="event-body">
-        <p>Details for this community event are being finalized. Check back soon or follow us on social media for announcements.</p>
-        <div class="event-detail"><span class="dot"></span> Date: TBD</div>
-        <div class="event-detail"><span class="dot"></span> Location: TBD</div>
-        <div class="event-detail"><span class="dot"></span> Free · Open to All</div>
+        <p>Join us for an inspiring reminder with Prof. Dr. Asim Bin Abdullah Bin Ibrahim Al-Khalili Al-Qaryouti, former student of Shaykh Muhammad Nasiruddin Al-Albani (رحمه الله). Topic: <strong>Building a Strong Muslim Family and Community</strong>.</p>
+        <div class="event-detail"><span class="dot"></span> Sunday, July 12, 2026 · From Dhuhr until Asr</div>
+        <div class="event-detail"><span class="dot"></span> Masjid Futa Islamic Center of NJ · 475 Springfield Ave, Newark</div>
+        <div class="event-detail"><span class="dot"></span> Free · Brothers &amp; Sisters Welcome</div>
+        <div style="margin-top:14px;">
+          <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Guest+Lecture%3A+Prof.+Dr.+Asim+Al-Khalili+Al-Qaryouti&amp;dates=20260712T170000Z/20260712T213000Z&amp;details=Topic%3A+Building+a+Strong+Muslim+Family+and+Community.+From+Dhuhr+until+Asr.+Free+%C2%B7+Brothers+%26+Sisters+Welcome.&amp;location=Masjid+Futa+Islamic+Center+of+NJ%2C+475+Springfield+Avenue%2C+Newark%2C+NJ+07103" target="_blank" rel="noopener" style="display:inline-block; font-size:12px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--green-mid); text-decoration:none; border:1.5px solid var(--green-mid); padding:8px 16px; border-radius:2px;">📅 Add to Calendar</a>
+        </div>
       </div>
     </div>
 
     <div class="event-card reveal">
       <div class="event-top">
         <div class="event-date-box" style="background:var(--green-mid);">
-          <div class="month">TBD</div>
-          <div class="day" style="font-size:20px;">—</div>
+          <div class="month">Every</div>
+          <div class="day" style="font-size:20px;">FRI</div>
         </div>
         <div class="event-meta">
-          <div class="type">Community</div>
-          <div class="title">Upcoming Event</div>
+          <div class="type">Weekly</div>
+          <div class="title">Jumu'ah Prayer</div>
         </div>
       </div>
       <div class="event-body">
-        <p>Details for this community event are being finalized. Check back soon or follow us on social media for announcements.</p>
-        <div class="event-detail"><span class="dot"></span> Date: TBD</div>
-        <div class="event-detail"><span class="dot"></span> Location: TBD</div>
-        <div class="event-detail"><span class="dot"></span> Free · Open to All</div>
+        <p>Join us every Friday for Jumu'ah — khutbah and congregational prayer. All brothers and sisters are welcome. Can't make it in person? Follow the khutbah live on our Facebook page.</p>
+        <div class="event-detail"><span class="dot"></span> Every Friday · See today's time in Prayer Times above</div>
+        <div class="event-detail"><span class="dot"></span> 475 Springfield Avenue, Newark, NJ 07103</div>
+        <div class="event-detail"><span class="dot"></span> Office hours: after Jumu'ah</div>
       </div>
     </div>
 
     <div class="event-card reveal">
       <div class="event-top">
         <div class="event-date-box" style="background:var(--green-mid);">
-          <div class="month">TBD</div>
-          <div class="day" style="font-size:20px;">—</div>
+          <div class="month">SAT</div>
+          <div class="day" style="font-size:20px;">SUN</div>
         </div>
         <div class="event-meta">
-          <div class="type">Community</div>
-          <div class="title">Upcoming Event</div>
+          <div class="type">Weekly</div>
+          <div class="title">Weekend Islamic School</div>
         </div>
       </div>
       <div class="event-body">
-        <p>Details for this community event are being finalized. Check back soon or follow us on social media for announcements.</p>
-        <div class="event-detail"><span class="dot"></span> Date: TBD</div>
-        <div class="event-detail"><span class="dot"></span> Location: TBD</div>
-        <div class="event-detail"><span class="dot"></span> Free · Open to All</div>
+        <p>Quran Reading (Nooraniya), Arabic, and Islamic Studies for kids and teens every weekend. Enrollment is open — visit us after Jumu'ah or reach out to register your child.</p>
+        <div class="event-detail"><span class="dot"></span> Saturday &amp; Sunday · 10:00 AM – 1:00 PM</div>
+        <div class="event-detail"><span class="dot"></span> 475 Springfield Avenue, Newark, NJ 07103</div>
+        <div class="event-detail"><span class="dot"></span> Open Enrollment</div>
       </div>
     </div>
   </div>
